@@ -1,18 +1,14 @@
-- 目录
-  - [第1章 绪论](chapter1/chapter1.md)
-  - [第2章 模型评估](chapter2/chapter2.md)
-  - [第3章 线性模型](chapter3/chapter3.md)
-  - [第4章 决策树](chapter4/chapter4.md)
-  - [第5章 神经网络](chapter5/chapter5.md)
-  - [第6章 支持向量机](chapter6/chapter6.md)
-  - [第7章 贝叶斯分类器](chapter7/chapter7.md)
-  - [第8章 集成学习](chapter8/chapter8.md)
-  - [第9章 聚类](chapter9/chapter9.md)
-  - [第10章 降维与度量学习](chapter10/chapter10.md)
-  - [第11章 特征选择与稀疏学习](chapter11/chapter11.md)
-  - [第12章 计算学习理论](chapter12/chapter12.md)
-  - [第13章 半监督学习](chapter13/chapter13.md)
-  - [第14章 概率图模型](chapter14/chapter14.md)
-  - [第15章 规则学习](chapter15/chapter15.md) 
-  - [第16章 强化学习](chapter16/chapter16.md)
-
+ - :books: **高效能工具或方法**
+   - [删除Mac自带ABC输入法](post/高效能工具或方法/删除Mac自带ABC输入法.md)
+   - [太极-提高计算密集型Python代码运行速度](post/高效能工具或方法/太极-提高计算密集型Python代码运行速度.md)
+   - [Mac安装brew的终极方法](post/高效能工具或方法/Mac安装brew的终极方法.md)
+   - [使用pipenv流畅创建虚拟环境](post/高效能工具或方法/使用pipenv流畅创建虚拟环境.md)
+   - [Mac安装vscode最快的方法](post/高效能工具或方法/Mac安装vscode最快的方法.md)
+ - :books: **隐私计算与联邦学习**
+   - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
+ - :books: **模式识别与机器学习**
+   - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
+   - [深入理解LogisticLoss与回归树](post/模式识别与机器学习/深入理解LogisticLoss与回归树.md)
+   - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
+   - [常见的数据预处理方法](post/模式识别与机器学习/常见的数据预处理方法.md)
+   - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
