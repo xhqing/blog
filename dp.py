@@ -26,7 +26,7 @@ def gen_mdfile(filename: str) -> None:
     with open(f"docs/{filename}.md", "w") as f:
         if filename=="README": 
             f.write("# 藏经阁\n")
-            f.write(" - **Repo Address**: https://github.com/xhqing/mptblog/\n")
+            f.write(" - **Repo Address**: https://github.com/xhqing/blog/\n")
         for dirname in post_dirs:
             f.write(f" - :books: **{dirname}**\n")
             post_mdfiles = []

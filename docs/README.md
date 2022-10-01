@@ -1,5 +1,5 @@
 # 藏经阁
- - **Repo Address**: https://github.com/xhqing/mptblog/
+ - **Repo Address**: https://github.com/xhqing/blog/
  - :books: **高效能工具或方法**
    - [删除Mac自带ABC输入法](post/高效能工具或方法/删除Mac自带ABC输入法.md)
    - [太极-提高计算密集型Python代码运行速度](post/高效能工具或方法/太极-提高计算密集型Python代码运行速度.md)
