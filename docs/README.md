@@ -10,7 +10,7 @@
    - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
  - :books: **模式识别与机器学习**
    - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
-   - [深入理解LogisticLoss与回归树](post/模式识别与机器学习/深入理解LogisticLoss与回归树.md)
+   - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
    - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
    - [常见的数据预处理方法](post/模式识别与机器学习/常见的数据预处理方法.md)
    - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
