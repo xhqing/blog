@@ -1,5 +1,7 @@
 # 藏经阁
  - **Repo Address**: https://github.com/xhqing/blog/
+ - :books: **概率论与数理统计**
+   - [正态分布与置信区间](post/概率论与数理统计/正态分布与置信区间.md)
  - :books: **高效率工具或方法**
    - [Scroll-Reverser-for-MacOS](post/高效率工具或方法/Scroll-Reverser-for-MacOS.md)
    - [删除Mac自带ABC输入法](post/高效率工具或方法/删除Mac自带ABC输入法.md)
