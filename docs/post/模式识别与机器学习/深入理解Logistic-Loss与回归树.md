@@ -119,8 +119,7 @@ $$
 $$
 \begin{aligned}
 \arg \min \sum_{i=1}^{N}L_{squared}\left(y_i,f\left(\boldsymbol x_i\right)\right) &= \arg\min\sum_{i=1}^{N}\left(y_i-f\left(\boldsymbol x_i\right)\right)^2 \\
-                             &= \arg\min\sum_{i=1}^{N}\left(y_i-\sum_{m=1}^{M}w_mI\left(\boldsymbol x_i\in T_m\right)\right)^2 \\
-                             
+                             &= \arg\min\sum_{i=1}^{N}\left(y_i-\sum_{m=1}^{M}w_mI\left(\boldsymbol x_i\in T_m\right)\right)^2 \\                     
                              &= \arg\min\sum_{m=1}^{M}\sum_{\boldsymbol x_i\in T_m}\left(y_i-w_m\right)^2
 \end{aligned} 
 \tag{17}
