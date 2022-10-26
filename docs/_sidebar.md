@@ -9,6 +9,8 @@
    - [Mac安装vscode最快的方法](post/高效率工具或方法/Mac安装vscode最快的方法.md)
  - :books: **隐私计算与联邦学习**
    - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
+ - :books: **Java程序设计**
+   - [MacOS-Java_HOME设置](post/Java程序设计/MacOS-Java_HOME设置.md)
  - :books: **模式识别与机器学习**
    - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
    - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
