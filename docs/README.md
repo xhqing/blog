@@ -14,9 +14,12 @@
  - :books: **Java程序设计**
    - [MacOS-Java_HOME设置](post/Java程序设计/MacOS-Java_HOME设置.md)
  - :books: **模式识别与机器学习**
+   - [关于数据正态化](post/模式识别与机器学习/关于数据正态化.md)
    - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
    - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
    - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
    - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
    - [常见的数据预处理方法](post/模式识别与机器学习/常见的数据预处理方法.md)
    - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
+ - :books: **键鼠装备**
+   - [Nuphy-Air60-Quick-Guide](post/键鼠装备/Nuphy-Air60-Quick-Guide.md)
