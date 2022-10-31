@@ -13,6 +13,8 @@
    - [正态分布与置信区间](post/概率论与数理统计/正态分布与置信区间.md)
  - :books: **隐私计算与联邦学习**
    - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
+ - :books: **Docker相关**
+   - [CentOS开启Docker服务命令](post/Docker相关/CentOS开启Docker服务命令.md)
  - :books: **Python相关**
    - [更换Python-pip安装源](post/Python相关/更换Python-pip安装源.md)
    - [太极-提高计算密集型Python代码运行速度](post/Python相关/太极-提高计算密集型Python代码运行速度.md)
