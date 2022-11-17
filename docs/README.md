@@ -1,5 +1,7 @@
 # 藏经阁
  - **Repo Address**: https://github.com/xhqing/blog/
+ - :books: **ClickHouse相关**
+   - [ClickHouse终端常用命令](post/ClickHouse相关/ClickHouse终端常用命令.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **高效率软件或方法**
