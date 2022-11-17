@@ -45,5 +45,5 @@ for v in versions:
 - 1）并不能够百分百保证`~/.pyenv/cache/`目录下有你想要的版本，如果没有的话，pyenv 又会跑到 Python 官网去下载，又不知道要等到猴年马月，最后只能`Ctr+C`中断；
 - 2）就算`~/.pyenv/cache/`中有你想要的 Python 版本，此时使用 pyenv 安装并不一定能安装成功，这个和系统环境等各方面的原因有关，但此时还是在使用`pipenv --python x.x.xx`这个命令的过程中，从使用体验上会有`pipenv --python x.x.xx`不好用的感觉，实际上相比于`pipenv --python path/to/python`这个命令要好用的多，因为后者还经常要去查一下 python 解释器的路径；
 
-所以目前除了更改`pyenv`和`pipenv`的源码外，最方便的方法是：把 pyenv 安装 Python 和使用 pipenv 创建虚拟环境这两件事隔离开来操作，当使用`pipenv --python x.x.xx`时如果提示是否使用 pyenv 安装 Python，直接选择拒绝，转而手动去使用 pyenv 安装相应版本的解释器到`~/.pyenv/versions/`下，或者选择其它的 Python 解释器路径，这个时候确实有点麻烦，为了尽可能避免这种麻烦事的发生，在使用 pipenv 之前应该手动使用 pyenv 把尽可能多的 Python 版本安装进`~/.pyenv/versions/`目录下。
+所以目前除了更改`pyenv`和`pipenv`的源码外，最方便的方法是：把 pyenv 安装 Python 和使用 pipenv 创建虚拟环境这两件事隔离开来操作，当使用`pipenv --python x.x.xx`时如果提示是否使用 pyenv 安装 Python，直接选择拒绝，转而手动去使用 pyenv 安装相应版本的解释器到`~/.pyenv/versions/`下，或者选择其它的 Python 解释器路径，这个时候确实有点麻烦，为了尽可能避免这种麻烦事的发生，在使用 pipenv 之前应该手动使用 pyenv 把尽可能多的 Python 版本安装进`~/.pyenv/versions/`目录下。使用 pyenv 批量安装 Python 参见：https://github.com/xhqing/pipenv-prepare
 
