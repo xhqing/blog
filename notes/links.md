@@ -95,3 +95,5 @@ https://www.youtube.com/watch?v=HtSuA80QTyo&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2
 https://www.zhihu.com/question/21628833
 
 https://www.bigocheatsheet.com/
+
+https://aws.amazon.com/cn/blogs/china/using-a-b-testing-to-measure-the-efficacy-of-recommendations-generated-by-amazon-personalize/
