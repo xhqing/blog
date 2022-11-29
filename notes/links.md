@@ -97,3 +97,5 @@ https://www.zhihu.com/question/21628833
 https://www.bigocheatsheet.com/
 
 https://aws.amazon.com/cn/blogs/china/using-a-b-testing-to-measure-the-efficacy-of-recommendations-generated-by-amazon-personalize/
+
+![image-20221129103045368](image-20221129103045368.png)
