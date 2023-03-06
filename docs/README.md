@@ -22,12 +22,13 @@
    - [太极-提高计算密集型Python代码运行速度](post/Python相关/太极-提高计算密集型Python代码运行速度.md)
    - [使用pipenv流畅创建虚拟环境](post/Python相关/使用pipenv流畅创建虚拟环境.md)
  - :books: **模式识别与机器学习**
+   - [数据标准化与皮尔孙相关系数.md](post/模式识别与机器学习/数据标准化与皮尔孙相关系数.md.md)
    - [关于数据正态化](post/模式识别与机器学习/关于数据正态化.md)
    - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
    - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
    - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
    - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
-   - [常见的数据预处理方法](post/模式识别与机器学习/常见的数据预处理方法.md)
+   - [数据中心化标准化归一化](post/模式识别与机器学习/数据中心化标准化归一化.md)
    - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
  - :books: **键鼠装备**
    - [Nuphy-Air60-Quick-Guide](post/键鼠装备/Nuphy-Air60-Quick-Guide.md)
