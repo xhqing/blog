@@ -3,6 +3,7 @@
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **高效率软件或方法**
+   - [conda-usage.md](post/高效率软件或方法/conda-usage.md.md)
    - [Scroll-Reverser-for-MacOS](post/高效率软件或方法/Scroll-Reverser-for-MacOS.md)
    - [删除Mac自带ABC输入法](post/高效率软件或方法/删除Mac自带ABC输入法.md)
    - [Mac安装brew的终极方法](post/高效率软件或方法/Mac安装brew的终极方法.md)
