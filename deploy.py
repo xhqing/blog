@@ -169,5 +169,6 @@ if __name__ == "__main__":
     first_line_add_br()
 
     print("==> Done. (./docs/ updated!)\n")
-    print("Use `gd && gc 'update docs' && gp` commit and push to github in time.\n")
+    print("You can use `python preview.py` to preview your post locally.\n")
+    print("Use `gd && gc 'update docs' && gp` commit and push to github in time!!!\n")
 
