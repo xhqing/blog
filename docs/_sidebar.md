@@ -12,6 +12,7 @@
    - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
  - :books: **概率论与数理统计**
    - [正态分布与置信区间](post/概率论与数理统计/正态分布与置信区间.md)
+   - [假设检验与AB测试](post/概率论与数理统计/假设检验与AB测试.md)
  - :books: **隐私计算与联邦学习**
    - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
  - :books: **Docker相关**
