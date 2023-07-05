@@ -161,7 +161,7 @@ if __name__ == "__main__":
     print("\n==> Starting blog deployment. (updating ./docs/)")
 
     title_level_check()
-   # title_length_check()
+    # title_length_check()
     refference_modify()
     gen_sidebar()
     gen_readme()
@@ -170,5 +170,5 @@ if __name__ == "__main__":
 
     print("==> Done. (./docs/ updated!)\n")
     print("You can use `python preview.py` to preview your post locally.\n")
-    print("""\033[01;31;01mUse `gd && gc 'update' && gp` commit and push to github in time!!!\033[01;31;01m\n""")
+    # print("""\033[01;31;01mUse `gd && gc 'update' && gp` commit and push to github in time!!!\033[01;31;01m\n""")
 
