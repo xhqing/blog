@@ -158,8 +158,9 @@ def refference_modify():
                     f.write(line)
 
 if __name__ == "__main__":
+    print("-----------")
     print("\n==> Starting blog deployment. (updating ./docs/)")
-    print("\nUsing Python:", platform.python_version())
+    print("Using Python:", platform.python_version())
     title_level_check()
     # title_length_check()
     refference_modify()
@@ -172,3 +173,4 @@ if __name__ == "__main__":
     print("You can use `python preview.py` to preview your post locally.\n")
     # print("""\033[01;31;01mUse `gd && gc 'update' && gp` commit and push to github in time!!!\033[01;31;01m\n""")
 
+    print("-----------")
