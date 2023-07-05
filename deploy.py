@@ -3,7 +3,7 @@
 import os
 import shutil
 import platform
-print("Using Python:", platform.python_version())
+print("\nUsing Python:", platform.python_version())
 
 class TitleError(Exception):
     """TitleError class"""
