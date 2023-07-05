@@ -10,7 +10,7 @@ conda create --name blog python=3.9.12
 conda activate blog
 ```
 
-## Usefull Commands
+## Useful Commands
 ```sh
 python new_post.py    # new post
 python deploy.py      # deploy post
