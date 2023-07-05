@@ -3,6 +3,7 @@
 import os
 import shutil
 import platform
+print("Using Python:", platform.python_version())
 
 class TitleError(Exception):
     """TitleError class"""
@@ -158,7 +159,6 @@ def refference_modify():
 
 if __name__ == "__main__":
     print("==> Starting blog deployment. (updating ./docs/)")
-    print("Using Python:", platform.python_version())
 
     title_level_check()
    # title_length_check()
@@ -169,5 +169,5 @@ if __name__ == "__main__":
     first_line_add_br()
 
     print("==> Done. (./docs/ updated!)\n")
-
+    print("Use `gd && gc 'update docs' && gp` commit and push to github in time.\n")
 
