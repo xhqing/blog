@@ -3,7 +3,7 @@
 import os
 import shutil
 import platform
-print("\nUsing Python:", platform.python_version())
+# print("\nUsing Python:", platform.python_version())
 
 class TitleError(Exception):
     """TitleError class"""
@@ -159,7 +159,7 @@ def refference_modify():
 
 if __name__ == "__main__":
     print("\n==> Starting blog deployment. (updating ./docs/)")
-
+    print("\nUsing Python:", platform.python_version())
     title_level_check()
     # title_length_check()
     refference_modify()
