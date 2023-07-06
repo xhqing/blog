@@ -1,7 +1,7 @@
 """
    cp .auto_deploy.py ~
    vim ~/.zshrc
-   alias gd="git pull && python ~/.auto_deploy.py"
+   alias gd="git pull && python --version && python ~/.auto_deploy.py"
    source ~/.zshrc
 """
 
