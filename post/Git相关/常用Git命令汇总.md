@@ -2,13 +2,16 @@
 关键词: git.
 
 ````sh
-## 基于当前分支新建分支xxx并切换到新建的分支xxx
+## 基于当前分支新建本地分支xxx并切换到新建的本地分支xxx
 git checkout -b xxx
+
+## 基于当前分支新建本地分支xxx
+git branch xxx
 
 ## 切换到xxx分支
 git checkout xxx
 
-## 查看所有分支和当前分支
+## 查看所有分支(本地和远程)
 git branch -a
 
 ## 当前目录为项目根目录，添加/提交/推送(个人习惯，这里使用的是设置在~/.bashrc或~/.zshrc里面的alias)
