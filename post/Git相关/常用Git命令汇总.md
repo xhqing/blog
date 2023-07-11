@@ -19,6 +19,9 @@ gpll   # 原命令：git pull
 
 ## 同步xxx分支代码到当前分支，基于设置：git config pull.rebase false
 git pull origin xxx
+
+## 同步本地xxx分支代码到当前分支
+git merge xxx
 ```
 ````
 
