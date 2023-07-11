@@ -15,7 +15,7 @@ git branch -a
 gd && gc "update" && gp   # 原命令：git add . && git commit -m "update" && git push
 
 ## 拉取远程仓库的当前分支并合并到本地当前分支(个人习惯，这里使用的是设置在~/.bashrc或~/.zshrc里面的alias)
-gpll                                       # 原命令：git pull
+gpll   # 原命令：git pull
 
 ## 同步xxx分支代码到当前分支
 git pull origin xxx && git merge xxx
