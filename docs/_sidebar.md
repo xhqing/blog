@@ -1,12 +1,9 @@
- - :books: **ClickHouse相关**
-   - [ClickHouse终端常用命令](post/ClickHouse相关/ClickHouse终端常用命令.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **高效率软件或方法**
    - [Scroll-Reverser-for-MacOS](post/高效率软件或方法/Scroll-Reverser-for-MacOS.md)
    - [删除Mac自带ABC输入法](post/高效率软件或方法/删除Mac自带ABC输入法.md)
    - [Mac安装brew的终极方法](post/高效率软件或方法/Mac安装brew的终极方法.md)
-   - [conda-usage](post/高效率软件或方法/conda-usage.md)
    - [Mac安装vscode最快的方法](post/高效率软件或方法/Mac安装vscode最快的方法.md)
  - :books: **Java相关**
    - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
@@ -32,5 +29,7 @@
    - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
    - [数据中心化标准化归一化](post/模式识别与机器学习/数据中心化标准化归一化.md)
    - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
+ - :books: **Conda相关**
+   - [常用Conda命令汇总](post/Conda相关/常用Conda命令汇总.md)
  - :books: **键鼠装备**
    - [Nuphy-Air60-Quick-Guide](post/键鼠装备/Nuphy-Air60-Quick-Guide.md)
