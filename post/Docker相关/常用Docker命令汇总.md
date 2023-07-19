@@ -34,5 +34,9 @@ docker restart CONTAINER_NAME
 
 ## 启动所有已停止的容器
 docker start $(docker ps -aq)
+
+## 提交容器生成镜像
+docker commit CONTAINER_NAME REPO:TAG  
+## 例：docker commit mypython
 ```
 
