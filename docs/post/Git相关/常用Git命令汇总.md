@@ -25,6 +25,9 @@ git pull origin xxx
 
 ## 同步本地xxx分支代码到当前分支
 git merge xxx
+
+## 查看有冲突的文件(路径)
+git status
 ```
 ````
 
