@@ -10,7 +10,7 @@
  - :books: **Java相关**
    - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
  - :books: **概率论与数理统计**
-   - [AB测试与假设检验](post/概率论与数理统计/AB测试与假设检验.md)
+   - [假设检验](post/概率论与数理统计/假设检验.md)
    - [统计学基础术语](post/概率论与数理统计/统计学基础术语.md)
  - :books: **Git相关**
    - [常用Git命令汇总](post/Git相关/常用Git命令汇总.md)
