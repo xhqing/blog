@@ -52,17 +52,19 @@ def choose_post_dir():
     
     msg = f"请问您想将此博文放到以下哪个栏目?\n"
     for i in range(len(post_dirs)):
-        msg += f"{i}. {post_dirs[i]}, "
-    msg = msg[:-2] + "\n"
-    msg += "请输入序号, 并按回车确定. "
+        msg += f"{i}. {post_dirs[i]}\n"
+    # msg = msg[:-2] + "\n"
+    msg += "请输入相应的栏目序号或输入'q'退出, 并按回车确定: "
     ans = input(msg)
+    if ans=="q":
+        sys.exit(0)
     return post_dirs[int(ans)]
 
 if __name__ == "__main__":
     try:
         post_title = sys.argv[1]
     except IndexError:
-        raise TitleError(f"""\033[01;31;01m no title, `python np.py your_post_title`\033[01;31;01m""")
+        raise TitleError(f"""\033[01;31;01m no title, `python new_post.py your_post_title`\033[01;31;01m""")
     
     dirname = choose_post_dir()
     post_mdfiles = os.listdir(f"./post/{dirname}")

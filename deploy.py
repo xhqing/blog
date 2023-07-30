@@ -3,6 +3,7 @@
 import os
 import shutil
 import platform
+# print("\nUsing Python:", platform.python_version())
 
 class TitleError(Exception):
     """TitleError class"""
@@ -15,7 +16,7 @@ def post_title_stdlen(post_title):
     cn_len = sum(list(map(lambda x: 1 if '\u4e00' <= x <= '\u9fa5' else 0, post_title)))
     return len(post_title) - cn_len + 2*cn_len
 
-def gen_mdfile(filename: str) -> None:
+def gen_mdfile(filename):
     """
     finename: "_sidebar", "README"
     """
@@ -157,17 +158,19 @@ def refference_modify():
                     f.write(line)
 
 if __name__ == "__main__":
-    print("==> Starting blog deployment.")
-    print("Using Python:", platform.python_version())
 
+    print("\nStarting blog deployment... (updating ./docs/)")
+    # print("Using Python:", platform.python_version())
     title_level_check()
-   # title_length_check()
+    # title_length_check()
     refference_modify()
     gen_sidebar()
     gen_readme()
     modify_tr_operator()
     first_line_add_br()
 
-    print("==> Blog deployment done.\n")
+    print("Done. (./docs/ updated!)\n")
+    print("You can use `python preview.py` to preview your post locally.\n")
+    # print("""\033[01;31;01mUse `gd && gc 'update' && gp` commit and push to github in time!!!\033[01;31;01m\n""")
 
-
+    
