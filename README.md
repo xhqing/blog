@@ -6,8 +6,8 @@ https://xhqing.github.io/blog
 
 ## Python Environment
 ```sh
-conda create --name blog python=3.9.12
-conda activate blog
+conda create --name py3912 python=3.9.12
+conda activate py3912
 ```
 
 ## Useful Commands
@@ -21,6 +21,6 @@ python preview.py    # preview post
 ```sh
 cp .auto_deploy.py ~
 vim ~/.zshrc
-gd="git pull && python --version && python ~/.auto_deploy.py"
+gd="python --version && python ~/.auto_deploy.py"
 source ~/.zshrc
 ```
