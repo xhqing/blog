@@ -21,6 +21,6 @@ python preview.py    # preview post
 ```sh
 cp .auto_deploy.py ~
 vim ~/.zshrc
-gd="python --version && python ~/.auto_deploy.py"
+gd="python ~/.auto_deploy.py"
 source ~/.zshrc
 ```
