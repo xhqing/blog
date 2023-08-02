@@ -1,3 +1,6 @@
+ - :books: **Statistics**
+   - [假设检验](post/Statistics/假设检验.md)
+   - [统计学基础术语](post/Statistics/统计学基础术语.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **高效率软件或方法**
@@ -7,9 +10,6 @@
    - [Mac安装vscode最快的方法](post/高效率软件或方法/Mac安装vscode最快的方法.md)
  - :books: **Java相关**
    - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
- - :books: **概率论与数理统计**
-   - [假设检验](post/概率论与数理统计/假设检验.md)
-   - [统计学基础术语](post/概率论与数理统计/统计学基础术语.md)
  - :books: **Git相关**
    - [常用Git命令汇总](post/Git相关/常用Git命令汇总.md)
  - :books: **隐私计算与联邦学习**
