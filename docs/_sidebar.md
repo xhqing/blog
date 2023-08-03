@@ -1,6 +1,6 @@
  - :books: **Statistics**
+   - [基础概念](post/Statistics/基础概念.md)
    - [假设检验](post/Statistics/假设检验.md)
-   - [统计学基础术语](post/Statistics/统计学基础术语.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **高效率软件或方法**
