@@ -1,4 +1,5 @@
  - :books: **Statistics**
+   - [参数估计](post/Statistics/参数估计.md)
    - [基础概念](post/Statistics/基础概念.md)
    - [假设检验](post/Statistics/假设检验.md)
  - :books: **数据仓库设计**

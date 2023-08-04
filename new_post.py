@@ -65,6 +65,9 @@ if __name__ == "__main__":
         post_title = sys.argv[1]
     except IndexError:
         raise TitleError(f"""\033[01;31;01m no title, `python new_post.py your_post_title`\033[01;31;01m""")
+
+    if post_title[-3:]==".md": 
+        raise TitleError(f"""\033[01;31;01m use `{post_title[:-3]}` as post title instead.`\033[01;31;01m""")
     
     dirname = choose_post_dir()
     post_mdfiles = os.listdir(f"./post/{dirname}")
