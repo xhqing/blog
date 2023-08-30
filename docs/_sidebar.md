@@ -15,6 +15,8 @@
    - [常用Git命令汇总](post/Git相关/常用Git命令汇总.md)
  - :books: **隐私计算与联邦学习**
    - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
+ - :books: **计算广告**
+   - [基础知识](post/计算广告/基础知识.md)
  - :books: **Docker相关**
    - [常用Docker命令汇总](post/Docker相关/常用Docker命令汇总.md)
  - :books: **Python相关**
