@@ -129,3 +129,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Team standard ignores (added 2026-09-12, Kit takeover; NOTE: docs/ is the docsify site content and must NOT be ignored)
+.env.*
+settings.local.json
+tmp/
+artifacts/
+node_modules/
