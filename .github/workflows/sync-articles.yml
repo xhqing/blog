@@ -3,6 +3,7 @@ name: sync articles
 # 把 social-agent（Gatsby 的项目）里 docs/articles/ 的文章同步进本博客。
 # 为什么是定时而不是推事件：跨仓库触发需要额外 token，定时拉取零配置、也不会
 # 因为对方仓库的权限变动而失效；每 10 分钟一次，合并后最迟十分钟上线。
+# 为什么产物走 PR 而不是直推 main：main 上有必过的 validate 检查，直接推会绕过它。
 
 on:
   schedule:
@@ -11,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: sync-articles
@@ -21,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -29,15 +33,29 @@ jobs:
       - name: 同步文章
         run: python3 scripts/sync_articles.py
 
-      - name: 提交并推送
+      - name: 提交到同步分支并开 PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           if git diff --quiet && git diff --cached --quiet; then
-            echo "没有变化，跳过提交"
+            echo "没有变化，跳过"
             exit 0
           fi
+
+          branch="sync/articles"
+          git checkout -B "$branch"
           git add -A
           git commit -m "sync: 同步 social-agent 的文章"
-          git push origin HEAD:main
+          git push -f origin "$branch"
+
+          # 分支上已经有开着的 PR 就复用，没有就新建
+          if [ -z "$(gh pr list --head "$branch" --state open --json number -q '.[].number')" ]; then
+            gh pr create --base main --head "$branch" \
+              --title "sync: 同步 social-agent 的文章" \
+              --body "由 \`.github/workflows/sync-articles.yml\` 自动生成：把 social-agent 的 \`docs/articles/\` 同步进本博客。"
+          fi
+          gh pr merge "$branch" --squash --auto

@@ -17,7 +17,7 @@
 两个来源：
 
 - **手写**：直接在 `docs/post/<分类>/` 下新建 Markdown。首行写 `创建于 YYYY-MM-DD<br>`，标题用二级 `##`。
-- **自动同步**：`social-agent` 项目里 `docs/articles/` 的文章，由 `.github/workflows/sync-articles.yml` 每 10 分钟拉一次（也可以手动触发），写进 `docs/post/复利与交易/` 这类分类目录。
+- **自动同步**：`social-agent` 项目里 `docs/articles/` 的文章，由 `.github/workflows/sync-articles.yml` 每 10 分钟拉一次（也可以手动触发），写进 `docs/post/复利与交易/` 这类分类目录。同步产物走 `sync/articles` 分支 + PR，CI 通过自动合并。
 
 **同步不看写完没写完**：源仓库里是什么状态，博客上就是什么状态。
 
