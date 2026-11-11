@@ -394,14 +394,3 @@ public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
 
-
-=======================================================================
-
-Copyright (c) 2021-2026 xhqing and contributors
-
-本仓库是「藏经阁」个人博客：主体是供人阅读的文章（连同生成站点的配套脚本），
-按上面的 Creative Commons Attribution 4.0 International（CC BY 4.0）授权。
-
-- 可以：共享（以任何媒介或格式复制、分发）、演绎（修改、转换、再创作），包括商业目的；
-- 条件：署名（注明「xhqing and contributors」并链接到 https://github.com/xhqing/blog，
-  说明是否做了修改）、给出本许可的链接、不用法律条款或技术措施限制他人行使本许可授予的权利。

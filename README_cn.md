@@ -43,4 +43,6 @@ python3 scripts/validate.py                   # 仓库自检（CI 跑的就是�
 
 Copyright (c) 2021-2026 xhqing and contributors，基于 [CC BY 4.0](LICENSE.md) 发布。
 
+`LICENSE.md` 收录的是 CC BY 4.0 官方许可全文，原样照收、一字不加——GitHub 只在这个文件是纯官方文本时才认得出许可证，所以版权行与许可要点写在本节。
+
 署名：本许可要求署名。转载、引用或改写时，请保留上面的版权声明，注明来源 [blog](https://github.com/xhqing/blog)，并说明你是否做了修改。
