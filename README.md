@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.svg" alt="blog" width="640">
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE.md)
+  [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](LICENSE.md)
   [![Version](https://img.shields.io/badge/Version-1.1.0-blue)](CHANGELOG.md)
   [![Type](https://img.shields.io/badge/Type-Project-lightgrey)](#)
 
@@ -41,6 +41,6 @@ Syncing runs on GitHub Actions, so no local setup is required. To rebuild the si
 
 ## License & Attribution
 
-Copyright (c) 2021-2026 xhqing and contributors. Released under the [MIT License](LICENSE.md).
+Copyright (c) 2021-2026 xhqing and contributors. Released under [CC BY 4.0](LICENSE.md).
 
-Attribution: if you use or reference this project, please keep the copyright notice and credit the source: [blog](https://github.com/xhqing/blog).
+Attribution: the licence requires credit. If you reuse or adapt this material, keep the copyright notice above, link back to [blog](https://github.com/xhqing/blog), and say whether you changed anything.

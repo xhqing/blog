@@ -20,6 +20,15 @@
 
 ## [Unreleased]
 
+### 变更（许可证类型修正：MIT → CC BY 4.0）
+
+- **为什么改**：本仓库主体是供人阅读的文章，属 2026-11-08 团队许可证规则里的**非软件项目**，应当用 CC BY 4.0；仓库里一直挂着 MIT——MIT 的授权对象是「software and associated documentation files」，对纯文字作品是用语错位（它也不要求以指定方式署名，而这正是文字作品最在意的）。用户 2026-11-11 当场指出这一点。
+- **改了什么**：
+  - `LICENSE.md` 顶部改为版权声明行 + 许可要点说明（可共享、可演绎、含商业用途；条件是署名、给出许可链接、标明是否修改、不加额外限制），正文原样收录官方 `legalcode.txt` 全文（https://creativecommons.org/licenses/by/4.0/legalcode.txt，未加改动）。
+  - `README.md` / `README_cn.md`：License 徽章由 MIT 改为 CC BY 4.0，底部版权与署名段改为 CC BY 口径（署名要求写清：保留版权声明、链接回本仓库、说明是否修改）。
+  - `CONTRIBUTING.md` / `CONTRIBUTING_cn.md`：贡献授权条款由 MIT License 改为 CC BY 4.0（贡献者保留著作权、按项目许可证授权这两条不变）。
+- **边界**：仓库里的配套脚本（`deploy.py` / `scripts/` / `.github/`）随主产物一并置于 CC BY 4.0 之下——按团队规则「软件 MIT / 非软件 CC BY 4.0，二选一、没有第三种」，本仓库按主产物（文章）定性。
+
 ### 变更（commit skill 标配补全：双语 README + LOGO + 徽章 + LICENSE.md + 检测缓存）
 
 - **为什么改**：`/commit` 流程第 9 步标配检测发现本仓库缺 README 中文版、LOGO、徽章、`LICENSE.md` 与 commit 检测缓存（2026-09-12 接管时未补齐），按 commit skill 规则自动补全。
