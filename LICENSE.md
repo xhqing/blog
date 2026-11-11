@@ -1,25 +1,3 @@
-Copyright (c) 2021-2026 xhqing and contributors
-
-本仓库是「藏经阁」个人博客：主体是供人阅读的文章，连同生成站点的配套脚本，
-统一按 Creative Commons Attribution 4.0 International（CC BY 4.0）授权。
-
-**你可以自由地**
-
-- 共享 —— 以任何媒介或格式复制、分发本作品；
-- 演绎 —— 修改、转换、以本作品为基础进行创作，包括商业目的。
-
-**条件是**
-
-- 署名 —— 注明「xhqing and contributors」，并链接到本仓库
-  （https://github.com/xhqing/blog）；如果做了修改，要说明改了什么；
-- 许可链接 —— 给出本许可的链接，让人知道授权条件；
-- 不加限制 —— 不得用法律条款或技术措施限制他人行使本许可授予的权利。
-
-下面是许可全文（官方文本，取自
-https://creativecommons.org/licenses/by/4.0/legalcode.txt，原样收录，未加改动）。
-
-=======================================================================
-
 Attribution 4.0 International
 
 =======================================================================
@@ -416,3 +394,14 @@ public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
 
+
+=======================================================================
+
+Copyright (c) 2021-2026 xhqing and contributors
+
+本仓库是「藏经阁」个人博客：主体是供人阅读的文章（连同生成站点的配套脚本），
+按上面的 Creative Commons Attribution 4.0 International（CC BY 4.0）授权。
+
+- 可以：共享（以任何媒介或格式复制、分发）、演绎（修改、转换、再创作），包括商业目的；
+- 条件：署名（注明「xhqing and contributors」并链接到 https://github.com/xhqing/blog，
+  说明是否做了修改）、给出本许可的链接、不用法律条款或技术措施限制他人行使本许可授予的权利。

@@ -31,6 +31,12 @@
 
 ## [Unreleased]
 
+### 修复（LICENSE.md 结构调整：官方全文在前、版权与说明在后，让 GitHub 认得出 CC BY 4.0）
+
+- **为什么改**：1.1.1 把版权行与中文说明放在了文件顶部、官方 legalcode 在后，结果 GitHub 的许可证识别算不出来——仓库右侧栏显示「Other」（`gh api repos/xhqing/blog/license` 的 `spdx_id` 为 null），`gh repo view --json licenseInfo` 也报 `key: other`。识别依赖标准法律文本占文件主体的比例，顶部的中文前言把它稀释了。用户要的是「点进仓库就能一眼看到 CC BY 4.0」，而不是一个「Other」。
+- **改了什么**：`LICENSE.md` 重排——第一行起就是官方 legalcode 全文（原样、零改动），版权行与许可要点说明放在全文之后，用分隔线隔开。内容一字未删，只是换了顺序。
+- **没改什么**：README 徽章、两份 CONTRIBUTING、`.commit-cache.md` 均不动。
+
 ### 变更（commit skill 标配补全：双语 README + LOGO + 徽章 + LICENSE.md + 检测缓存）
 
 - **为什么改**：`/commit` 流程第 9 步标配检测发现本仓库缺 README 中文版、LOGO、徽章、`LICENSE.md` 与 commit 检测缓存（2026-09-12 接管时未补齐），按 commit skill 规则自动补全。
