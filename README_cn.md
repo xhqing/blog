@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/logo.svg" alt="blog" width="640">
 
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE.md)
+  [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](LICENSE.md)
   [![Version](https://img.shields.io/badge/Version-1.1.0-blue)](CHANGELOG.md)
   [![Type](https://img.shields.io/badge/Type-Project-lightgrey)](#)
 
@@ -41,6 +41,6 @@ python3 scripts/validate.py                   # 仓库自检（CI 跑的就是�
 
 ## 版权与署名
 
-Copyright (c) 2021-2026 xhqing and contributors，基于 [MIT License](LICENSE.md) 发布。
+Copyright (c) 2021-2026 xhqing and contributors，基于 [CC BY 4.0](LICENSE.md) 发布。
 
-署名：使用或引用本项目时，请保留版权声明并注明来源：[blog](https://github.com/xhqing/blog)。
+署名：本许可要求署名。转载、引用或改写时，请保留上面的版权声明，注明来源 [blog](https://github.com/xhqing/blog)，并说明你是否做了修改。
