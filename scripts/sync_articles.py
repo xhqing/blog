@@ -49,8 +49,8 @@ ORDER = {
 }
 KEYWORDS = {
     "compounding-three-switches.md": "复利, 复利公式, 几何平均, 大数定律",
-    "compounding-verify.md": "正期望, 样本量, t 检验, 置信区间",
-    "compounding-size.md": "凯利公式, 仓位管理, 波动率拖累",
+    "compounding-verify.md": "复利, 正期望, 样本量, t 检验, 置信区间",
+    "compounding-size.md": "复利, 凯利公式, 仓位管理, 波动率拖累",
     "three-switches-derivation.md": "复利, 数学推导, 凯利公式",
     "compounding-assumptions.md": "相关性, 非正态, 多重比较",
 }
