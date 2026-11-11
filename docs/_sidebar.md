@@ -1,38 +1,44 @@
- - :books: **Statistics**
-   - [参数估计](post/Statistics/参数估计.md)
-   - [基础概念](post/Statistics/基础概念.md)
-   - [假设检验](post/Statistics/假设检验.md)
- - :books: **数据仓库设计**
-   - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
- - :books: **高效率软件或方法**
-   - [Scroll-Reverser-for-MacOS](post/高效率软件或方法/Scroll-Reverser-for-MacOS.md)
-   - [删除Mac自带ABC输入法](post/高效率软件或方法/删除Mac自带ABC输入法.md)
-   - [Mac安装brew的终极方法](post/高效率软件或方法/Mac安装brew的终极方法.md)
-   - [Mac安装vscode最快的方法](post/高效率软件或方法/Mac安装vscode最快的方法.md)
- - :books: **Java相关**
-   - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
- - :books: **Git相关**
-   - [常用Git命令汇总](post/Git相关/常用Git命令汇总.md)
- - :books: **隐私计算与联邦学习**
-   - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
- - :books: **计算广告**
-   - [深入理解互联网广告的出价模式](post/计算广告/深入理解互联网广告的出价模式.md)
- - :books: **Docker相关**
-   - [常用Docker命令汇总](post/Docker相关/常用Docker命令汇总.md)
- - :books: **Python相关**
-   - [更换Python-pip安装源](post/Python相关/更换Python-pip安装源.md)
-   - [太极-提高计算密集型Python代码运行速度](post/Python相关/太极-提高计算密集型Python代码运行速度.md)
-   - [使用pipenv流畅创建虚拟环境](post/Python相关/使用pipenv流畅创建虚拟环境.md)
- - :books: **模式识别与机器学习**
-   - [数据标准化与皮尔孙相关系数](post/模式识别与机器学习/数据标准化与皮尔孙相关系数.md)
-   - [关于数据正态化](post/模式识别与机器学习/关于数据正态化.md)
-   - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
-   - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
-   - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
-   - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
-   - [数据中心化标准化归一化](post/模式识别与机器学习/数据中心化标准化归一化.md)
-   - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
  - :books: **Conda相关**
    - [常用Conda命令汇总](post/Conda相关/常用Conda命令汇总.md)
+ - :books: **Docker相关**
+   - [常用Docker命令汇总](post/Docker相关/常用Docker命令汇总.md)
+ - :books: **Git相关**
+   - [常用Git命令汇总](post/Git相关/常用Git命令汇总.md)
+ - :books: **Java相关**
+   - [MacOS-Java_HOME设置](post/Java相关/MacOS-Java_HOME设置.md)
+ - :books: **Python相关**
+   - [使用pipenv流畅创建虚拟环境](post/Python相关/使用pipenv流畅创建虚拟环境.md)
+   - [太极-提高计算密集型Python代码运行速度](post/Python相关/太极-提高计算密集型Python代码运行速度.md)
+   - [更换Python-pip安装源](post/Python相关/更换Python-pip安装源.md)
+ - :books: **Statistics**
+   - [假设检验](post/Statistics/假设检验.md)
+   - [参数估计](post/Statistics/参数估计.md)
+   - [基础概念](post/Statistics/基础概念.md)
+ - :books: **复利与交易**
+   - [你很可能不知道的关于复利的三个关键点](post/复利与交易/你很可能不知道的关于复利的三个关键点.md)
+   - [怎么证明一个方法真的不亏](post/复利与交易/怎么证明一个方法真的不亏.md)
+   - [押多少、做多少次：复利里反直觉的两个开关](post/复利与交易/押多少、做多少次：复利里反直觉的两个开关.md)
+   - [复利的三个关键点：完整推导与数字复核](post/复利与交易/复利的三个关键点：完整推导与数字复核.md)
+   - [当复利的假设被打破](post/复利与交易/当复利的假设被打破.md)
+ - :books: **数据仓库设计**
+   - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
+ - :books: **模式识别与机器学习**
+   - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
+   - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
+   - [主成分分析原理详解](post/模式识别与机器学习/主成分分析原理详解.md)
+   - [关于数据正态化](post/模式识别与机器学习/关于数据正态化.md)
+   - [关于机器学习中的降维](post/模式识别与机器学习/关于机器学习中的降维.md)
+   - [数据中心化标准化归一化](post/模式识别与机器学习/数据中心化标准化归一化.md)
+   - [数据标准化与皮尔孙相关系数](post/模式识别与机器学习/数据标准化与皮尔孙相关系数.md)
+   - [深入理解Logistic-Loss与回归树](post/模式识别与机器学习/深入理解Logistic-Loss与回归树.md)
+ - :books: **计算广告**
+   - [深入理解互联网广告的出价模式](post/计算广告/深入理解互联网广告的出价模式.md)
  - :books: **键鼠装备**
    - [Nuphy-Air60-Quick-Guide](post/键鼠装备/Nuphy-Air60-Quick-Guide.md)
+ - :books: **隐私计算与联邦学习**
+   - [联邦学习与安全多方计算](post/隐私计算与联邦学习/联邦学习与安全多方计算.md)
+ - :books: **高效率软件或方法**
+   - [Mac安装brew的终极方法](post/高效率软件或方法/Mac安装brew的终极方法.md)
+   - [Mac安装vscode最快的方法](post/高效率软件或方法/Mac安装vscode最快的方法.md)
+   - [Scroll-Reverser-for-MacOS](post/高效率软件或方法/Scroll-Reverser-for-MacOS.md)
+   - [删除Mac自带ABC输入法](post/高效率软件或方法/删除Mac自带ABC输入法.md)

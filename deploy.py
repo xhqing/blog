@@ -1,176 +1,149 @@
-"""Blog deployment script.
+"""藏经阁（docsify 博客）的构建步骤。
+
+`docs/post/` 就是文章本体，本脚本只做三件事：
+
+1. 生成侧边栏 `docs/_sidebar.md` 与首页 `docs/README.md`（按目录结构，链接文字取文章标题）；
+2. 给首行「创建于 …」补 `<br>`（docsify 里单换行不断行，日期和关键词会挤成一行）；
+3. 把 `\\tr` 换成 `\\operatorname{tr}`（KaTeX 不认 `\\tr`）。
+
+**为什么删掉了旧版的目录拷贝**：旧版 `refference_modify()` 先
+`shutil.rmtree("./docs/post")`、再 `cp -r ./post ./docs/`，而根目录的 `post/`
+早在某次整理时就不存在了——于是这段逻辑会**先删掉全部文章、再拷贝失败**，
+等于一次运行清空整站。现在文章直接活在 `docs/post/`，构建只读不改，不再有拷贝步骤。
+
+用法：
+    python3 deploy.py          # 重新生成侧边栏与首页、修首行与公式宏
+    python3 deploy.py --check  # 只检查有没有格式问题，不写文件
 """
-import os
-import shutil
-import platform
-# print("\nUsing Python:", platform.python_version())
 
-class TitleError(Exception):
-    """TitleError class"""
+from __future__ import annotations
 
-class LengthError(Exception):
-    """length too long error"""
+import argparse
+import re
+import sys
+from pathlib import Path
 
-def post_title_stdlen(post_title):
+DOCS = Path("docs")
+POSTS = DOCS / "post"
+DATE_RE = re.compile(r"^创建于 \d{4}-\d{2}-\d{2}(<br>)?$")
+ORDER_RE = re.compile(r"<!-- order: (\d+) -->")
 
-    cn_len = sum(list(map(lambda x: 1 if '\u4e00' <= x <= '\u9fa5' else 0, post_title)))
-    return len(post_title) - cn_len + 2*cn_len
 
-def gen_mdfile(filename):
+def post_title(path: Path) -> str:
+    """侧边栏显示的文章名：用文件名（不带 .md）。
+
+    为什么不读正文里的第一个 `## `？旧文章里第一个二级标题经常是小节名
+    （如「## 导读」），拿它当标题会把侧边栏写成小节名。旧版 deploy.py 也是用
+    文件名，同步脚本又按标题命名文件，两边口径一致。
     """
-    finename: "_sidebar", "README"
-    """
-    post_dirs = []
-    for string in os.listdir("docs/post"):
-        if "." not in string: post_dirs.append(string)
+    return path.stem
 
-    with open(f"docs/{filename}.md", "w") as f:
-        if filename=="README": 
-            f.write("# 藏经阁\n")
-            f.write(" - **Repo Address**: https://github.com/xhqing/blog/\n")
-        for dirname in post_dirs:
-            f.write(f" - :books: **{dirname}**\n")
-            post_mdfiles = []
-            for string in os.listdir(f"docs/post/{dirname}"):
-                if string[-3:] == ".md": post_mdfiles.append(string)
-            for mdf in post_mdfiles:
-                f.write(f"   - [{mdf[:-3]}](post/{dirname}/{mdf})\n")
 
-def gen_readme():
-    gen_mdfile("README")
+def post_order(path: Path) -> int:
+    """同步脚本给系列文章写的顺序标记；手写文章没有标记，排在后面、按文件名排。"""
+    m = ORDER_RE.search(path.read_text(encoding="utf-8")[:500])
+    return int(m.group(1)) if m else 999
 
-def gen_sidebar():
-    gen_mdfile("_sidebar")
 
-def modify_tr_operator():
+def iter_posts() -> list[tuple[str, Path]]:
+    """按「分类目录 → 顺序标记 → 文件名」列出全部文章（结果稳定、可复现）。"""
+    items: list[tuple[str, Path]] = []
+    for category in sorted(p for p in POSTS.iterdir() if p.is_dir()):
+        for post in sorted(category.glob("*.md"), key=lambda f: (post_order(f), f.stem)):
+            items.append((category.name, post))
+    return items
 
-    post_dirs = []
-    for string in os.listdir("docs/post"):
-        if "." not in string: post_dirs.append(string)
 
-    for dirname in post_dirs:
-        post_mdfiles = []
-        for string in os.listdir(f"docs/post/{dirname}"):
-            if string[-3:] == ".md": post_mdfiles.append(string)
-        
-        if post_mdfiles:
-            for mdf in post_mdfiles:
-                with open(f"docs/post/{dirname}/"+mdf, "r") as f:
-                    lines = f.readlines()
-            for line in lines:
-                if "\\tr" in line:
-                    index = lines.index(line)
-                    lines[index] = lines[index].replace("\\tr","\operatorname{tr}")
+def render_sidebar() -> str:
+    lines: list[str] = []
+    current: str | None = None
+    for category, post in iter_posts():
+        if category != current:
+            current = category
+            lines.append(f" - :books: **{category}**")
+        lines.append(f"   - [{post_title(post)}](post/{category}/{post.name})")
+    return "\n".join(lines) + "\n"
 
-            with open(f"docs/post/{dirname}/"+mdf, "w") as f:
-                for line in lines:
-                    f.write(line)
 
-def first_line_add_br():
+def render_readme() -> str:
+    lines = ["# 藏经阁", "", " - **Repo Address**: https://github.com/xhqing/blog/"]
+    current: str | None = None
+    for category, post in iter_posts():
+        if category != current:
+            current = category
+            lines.append(f" - :books: **{category}**")
+        lines.append(f"   - [{post_title(post)}](post/{category}/{post.name})")
+    return "\n".join(lines) + "\n"
 
-    post_dirs = []
-    for string in os.listdir("docs/post"):
-        if "." not in string: post_dirs.append(string)
-    
-    for dirname in post_dirs:
-        post_mdfiles = []
-        for string in os.listdir(f"docs/post/{dirname}"):
-            if string[-3:]==".md": post_mdfiles.append(string)
 
-        for mdf in post_mdfiles:
-            with open(f"docs/post/{dirname}/"+mdf, "r") as f:
-                lines = f.readlines()
-            if lines[0][:3]=="创建于": lines[0] = lines[0].replace("\n","<br>\n")
+def fix_first_line(text: str) -> str:
+    """首行「创建于 …」补 `<br>`，否则日期和关键词会被 docsify 渲染成同一行。"""
+    lines = text.split("\n")
+    if lines and lines[0].startswith("创建于") and not lines[0].endswith("<br>"):
+        lines[0] = lines[0].rstrip() + "<br>"
+    return "\n".join(lines)
 
-            with open(f"docs/post/{dirname}/"+mdf, "w") as f:
-                for line in lines: f.write(line)
 
-def title_level_check():
-    """
-    post mdfile level 1 title should use 2 `#`.
-    """
-    post_dirs = []
-    for string in os.listdir("post"):
-        if "." not in string: post_dirs.append(string)
-    
-    for dirname in post_dirs:
-        post_mdfiles = []
-        for string in os.listdir(f"post/{dirname}"):
-            if string[-3:]==".md": post_mdfiles.append(string)
-    
-        for mdf in post_mdfiles:
-            with open(f"./post/{dirname}/"+mdf, "r") as f:
-                text = f.readlines()
-    
-            for line in text:
-                if line[:2] == "# ":
-                    raise TitleError(f"""\033[01;31;01m {mdf} {line} Please use 2 '#', {'#'+line}\033[01;31;01m""")
+def fix_math_macros(text: str) -> str:
+    return text.replace("\\tr", "\\operatorname{tr}")
 
-def title_length_check():
-    """post title length should not be more than 28 chars. 
-    Note: a cn char len eq to double en char len.
-    """
-    post_dirs = []
-    for string in os.listdir("post"):
-        if "." not in string: post_dirs.append(string)
 
-    for dirname in post_dirs:
-        post_mdfiles = []
-        for string in os.listdir(f"post/{dirname}"):
-            if string[-3:]==".md": post_mdfiles.append(string)
+def collect_problems() -> list[str]:
+    """检查文章格式：一级标题、首行日期、是否进了侧边栏。"""
+    problems: list[str] = []
+    sidebar = (DOCS / "_sidebar.md").read_text(encoding="utf-8") if (DOCS / "_sidebar.md").exists() else ""
+    for category, post in iter_posts():
+        rel = post.relative_to(DOCS).as_posix()
+        text = post.read_text(encoding="utf-8")
+        first = text.split("\n", 1)[0]
+        if not DATE_RE.match(first):
+            problems.append(f"{rel}: 首行应为「创建于 YYYY-MM-DD<br>」，实际是 {first[:40]!r}")
+        for n, line in enumerate(text.splitlines(), 1):
+            if line.startswith("# "):
+                problems.append(f"{rel}:{n}: 一级标题请改用二级（`## `），docsify 侧边栏只认到二级")
+                break
+        if rel not in sidebar:
+            problems.append(f"{rel}: 没有出现在 docs/_sidebar.md 里（跑一次 python3 deploy.py）")
+    for link in re.findall(r"\]\((post/[^)]+)\)", sidebar):
+        if not (DOCS / link).exists():
+            problems.append(f"docs/_sidebar.md: 链接指向不存在的文件 {link}")
+    return problems
 
-        post_titles = list(map(lambda x: x.replace("--未完成.md","") if "--未完成" in x else x.replace(".md",""), post_mdfiles))
-        for title in post_titles:
-            if post_title_stdlen(title) > 28:
-                msg = f"`{title}` title length is more than 28 chars! Note: a cn char len eq to double en char len."
-                raise LengthError(msg)
 
-def refference_modify():
-    """add <br> in refference line, the last char except \n.
-    """
-    docs_sub = os.listdir("./docs")
-    if "post" in docs_sub:
-        shutil.rmtree("./docs/post")
-    os.system("cp -r ./post ./docs/")
-   
-    post_dirs = []
-    for string in os.listdir("docs/post"):
-        if "." not in string: post_dirs.append(string)
-    
-    for dirname in post_dirs:
+def build(check_only: bool = False) -> int:
+    if check_only:
+        problems = collect_problems()
+        for p in problems:
+            print(f"✗ {p}")
+        print(f"\n检查完成：{len(problems)} 个问题")
+        return 1 if problems else 0
 
-        post_mdfiles = []
-        for string in os.listdir(f"docs/post/{dirname}"):
-            if string[-3:]==".md": post_mdfiles.append(string)
-   
-        for mdf in post_mdfiles:
-            with open(f"./docs/post/{dirname}/"+mdf, "r") as f:
-                text = f.readlines()
-   
-            if "## 参考文献\n" in text:
-                index = text.index("## 参考文献\n")
-                for i in range(index, len(text)):
-                    if text[i][0] == "[":
-                        text[i] = text[i][:-1]+"<br>"+"\n"
-   
-            with open(f"./docs/post/{dirname}/"+mdf, "w") as f:
-                for line in text:
-                    f.write(line)
+    changed: list[str] = []
+    for _, post in iter_posts():
+        original = post.read_text(encoding="utf-8")
+        fixed = fix_first_line(fix_math_macros(original))
+        if fixed != original:
+            post.write_text(fixed, encoding="utf-8")
+            changed.append(post.relative_to(DOCS).as_posix())
+
+    for name, content in (("_sidebar.md", render_sidebar()), ("README.md", render_readme())):
+        target = DOCS / name
+        if not target.exists() or target.read_text(encoding="utf-8") != content:
+            target.write_text(content, encoding="utf-8")
+            changed.append(f"docs/{name}")
+
+    print(f"构建完成：更新 {len(changed)} 个文件" + (f"（{', '.join(changed)}）" if changed else ""))
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="藏经阁构建步骤")
+    parser.add_argument("--check", action="store_true", help="只检查格式，不写文件")
+    args = parser.parse_args()
+    if not POSTS.is_dir():
+        sys.exit(f"找不到文章目录 {POSTS}，请在仓库根目录运行本脚本")
+    return build(check_only=args.check)
+
 
 if __name__ == "__main__":
-
-    print("\nStarting blog deployment... (updating ./docs/)")
-    # print("Using Python:", platform.python_version())
-    title_level_check()
-    # title_length_check()
-    refference_modify()
-    gen_sidebar()
-    gen_readme()
-    modify_tr_operator()
-    first_line_add_br()
-
-    print("Done. (./docs/ updated!)\n")
-    print("You can use `python preview.py` to preview your post locally.\n")
-    # print("""\033[01;31;01mUse `gd && gc 'update' && gp` commit and push to github in time!!!\033[01;31;01m\n""")
-
-    
+    raise SystemExit(main())
