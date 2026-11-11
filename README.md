@@ -17,7 +17,7 @@ Personal blog "藏经阁" built with [docsify](https://docsify.js.org/), publish
 Two sources:
 
 - **Written by hand**: drop a Markdown file into `docs/post/<category>/`. The first line should read `创建于 YYYY-MM-DD<br>`, and the title uses a second-level `##` heading.
-- **Synced automatically**: articles living in the `docs/articles/` folder of the `social-agent` project are pulled in every ten minutes by `.github/workflows/sync-articles.yml` (manual runs are also supported) and written into category folders such as `docs/post/复利与交易/`.
+- **Synced automatically**: articles living in the `docs/articles/` folder of the `social-agent` project are pulled in every ten minutes by `.github/workflows/sync-articles.yml` (manual runs are also supported) and written into category folders such as `docs/post/复利与交易/`. The result lands through a `sync/articles` branch and a pull request that merges itself once CI passes.
 
 **A post does not need to be finished to be published** — whatever state the source repo is in is what the blog shows.
 
