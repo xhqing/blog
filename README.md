@@ -2,7 +2,7 @@
   <img src="assets/logo.svg" alt="blog" width="640">
 
   [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](LICENSE.md)
-  [![Version](https://img.shields.io/badge/Version-1.1.0-blue)](CHANGELOG.md)
+  [![Version](https://img.shields.io/badge/Version-1.1.1-blue)](CHANGELOG.md)
   [![Type](https://img.shields.io/badge/Type-Project-lightgrey)](#)
 
   [简体中文](README_cn.md)
