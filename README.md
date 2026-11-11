@@ -2,7 +2,7 @@
   <img src="assets/logo.svg" alt="blog" width="640">
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](LICENSE.md)
-  [![Version](https://img.shields.io/badge/Version-1.0.0-blue)](CHANGELOG.md)
+  [![Version](https://img.shields.io/badge/Version-1.1.0-blue)](CHANGELOG.md)
   [![Type](https://img.shields.io/badge/Type-Project-lightgrey)](#)
 
   [简体中文](README_cn.md)
@@ -10,34 +10,37 @@
 
 # blog
 
-Personal blog built with [docsify](https://docsify.js.org/), published at **https://xhqing.github.io/blog**.
+Personal blog "藏经阁" built with [docsify](https://docsify.js.org/), published at **https://xhqing.github.io/blog**.
 
-## Python environment
+## Where posts come from
 
-```sh
-conda create --name py3912 python=3.9.12
-conda activate py3912
-```
+Two sources:
+
+- **Written by hand**: drop a Markdown file into `docs/post/<category>/`. The first line should read `创建于 YYYY-MM-DD<br>`, and the title uses a second-level `##` heading.
+- **Synced automatically**: articles living in the `docs/articles/` folder of the `social-agent` project are pulled in every ten minutes by `.github/workflows/sync-articles.yml` (manual runs are also supported) and written into category folders such as `docs/post/复利与交易/`.
+
+**A post does not need to be finished to be published** — whatever state the source repo is in is what the blog shows.
+
+The sync only touches its own output: each synced post carries a `<!-- source: … -->` marker, so deleting or renaming a source article removes or moves the matching post, while hand-written posts are never touched.
 
 ## Useful commands
 
 ```sh
-python new_post.py    # new post
-python deploy.py      # deploy post
-python preview.py     # preview post
+python3 deploy.py                             # regenerate sidebar and home page, fix first line and math macros
+python3 deploy.py --check                     # check formatting only, write nothing
+python3 scripts/sync_articles.py              # sync the social-agent articles right now
+python3 scripts/sync_articles.py --dry-run    # print the sync plan only
+python3 scripts/validate.py                   # repo self-check (the same script CI runs)
 ```
+
+To preview locally, point any static server at `docs/`, e.g. `python3 -m http.server -d docs 8000`.
 
 ## Auto deployment setup
 
-```sh
-cp .auto_deploy.py ~
-vim ~/.zshrc
-gd="python ~/.auto_deploy.py"
-source ~/.zshrc
-```
+Syncing runs on GitHub Actions, so no local setup is required. To rebuild the sidebar and home page by hand, run `python3 deploy.py` and commit.
 
 ## License & Attribution
 
-Copyright (c) 2021 All Contributors. Released under the [MIT License](LICENSE.md).
+Copyright (c) 2021-2026 xhqing and contributors. Released under the [MIT License](LICENSE.md).
 
 Attribution: if you use or reference this project, please keep the copyright notice and credit the source: [blog](https://github.com/xhqing/blog).

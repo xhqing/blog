@@ -2,6 +2,21 @@
 
 本文件记录本项目（blog，个人博客仓库）每次文件增删改的变更，写清「为什么改」和「改了什么」。版本号以项目根 `VERSION` 文件为唯一权威。
 
+## [1.1.0] - 2026-11-11
+
+### 新增（自动发布管道：social-agent 的文章自动同步进博客）
+
+- **为什么改**：用户 2026-11-11 把博客移交到 social-agent（Gatsby）名下作为子项目，同时提两条要求——① social-agent 的 `docs/articles/` 里**所有**文章都发到博客，**不看写完没写完**；② 每次 PR 更新文章内容就自动发布。此前本仓库的文章只能手写到 `docs/post/`，与写作源头（social-agent 的公众号稿）完全脱节。
+- **改了什么**：
+  - 新增 `scripts/sync_articles.py`：拉 social-agent 的文章 → 转成博客体例（一级标题改二级、补 `创建于` / `关键词` 首行、相对图片拷进 `img/<源文件名>/` 并改写链接）→ 跑 `deploy.py` → 有变化才提交。带 `<!-- source: … -->` 标记认领自己写的文章：源文章改名或删除时，博客上对应那篇跟着另存或删除；**没有标记的手写文章永远不会被碰**。支持 `--source`（本地副本调试）与 `--dry-run`（只看计划）。
+  - 新增 `.github/workflows/sync-articles.yml`：每 10 分钟拉一次 + 手动 `workflow_dispatch`。用定时拉取而不是跨仓库推送，是因为跨仓库触发需要额外 token，而定时拉取零配置、不会因为对方仓库权限变动而失效；合并后最迟十分钟上线。
+  - 新增 `.github/workflows/validate.yml` + `scripts/validate.py`：CI 自检——Python 语法能过、每篇首行是「创建于 YYYY-MM-DD」、没有一级标题、每篇都进了侧边栏、侧边栏链接都指向真实文件。
+  - **重写 `deploy.py`**：删掉旧版 `refference_modify()` 的目录拷贝逻辑——它先 `shutil.rmtree("./docs/post")` 再 `cp -r ./post ./docs/`，而根目录 `post/` 早已不存在，**一次运行就清空全站文章**；改为原地修复，不再有拷贝步骤。侧边栏与首页改为按 `order` 标记 + 文件名排序（结果可复现），新增 `--check` 只检不写。
+  - 新增 `AGENTS.md` 与 `.pi/APPEND_SYSTEM.md`（2026-11-08 子项目新规：本仓库实体文件，不挂软链接）、`CONTRIBUTING.md` / `CONTRIBUTING_cn.md`（2026-11-09 团队标准，`{{LICENSE_NAME}}` 已替换为 MIT License）。
+  - `README.md` / `README_cn.md` 双语同步：补「文章从哪来」与真实可用的命令（原文档里的 `new_post.py` / `preview.py` 在仓库里并不存在），版本徽章改为 1.1.0。`LICENSE.md` 与 README 版权行按 2026-11-08 新规改为 `xhqing and contributors`，`.commit-cache.md` 的署名口径同步。
+- **首次同步结果**：5 篇（复利系列）进 `docs/post/复利与交易/`，6 张配图进 `img/<源文件名>/`，侧边栏按系列阅读顺序 1–5 排列。
+- **已知边界**：定时拉取意味着合并后最迟十分钟才上线；要立即发布可以手动触发 workflow。未合并的 PR 分支内容不会发——发布的是 `main` 上的状态。
+
 ## [Unreleased]
 
 ### 变更（commit skill 标配补全：双语 README + LOGO + 徽章 + LICENSE.md + 检测缓存）
