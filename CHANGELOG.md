@@ -2,6 +2,16 @@
 
 本文件记录本项目（blog，个人博客仓库）每次文件增删改的变更，写清「为什么改」和「改了什么」。版本号以项目根 `VERSION` 文件为唯一权威。
 
+## [1.1.2] - 2026-11-11
+
+### 修复（LICENSE.md 改为纯官方全文：GitHub 只认零追加的 CC BY 4.0）
+
+- **为什么改**：1.1.1 之后仓库侧边栏的许可证显示「Other」，`gh api repos/xhqing/blog/license` 返回 `{"key":"other","spdx_id":"NOASSERTION"}`——等于在 GitHub 眼里没有许可证，读者看不到 CC BY 4.0。
+- **怎么查出来的**：对照两个同样用 CC BY 4.0 的知名仓库——`microsoft/autogen` 与 `EbookFoundation/free-programming-books`，两者的 `LICENSE` 都是**纯 `legalcode.txt` 全文、零追加**（18650 / 18658 字节），GitHub 都识别为 `cc-by-4.0` / `CC-BY-4.0`。我们那两版都在官方文本前后加了自己的段落（先是版权行 + 中文说明在顶部，后来版权行改到末尾），两版都还是 `NOASSERTION`。结论：**GitHub 的 CC BY 识别要求 LICENSE 文件就是纯官方文本，加一个版权行都不算**——这和 MIT 不同（MIT 模板本身就把版权行和许可正文写在一个文件里）。
+- **改了什么**：`LICENSE.md` 换成官方 `legalcode.txt` 全文（原样下载、一字不改）；版权声明行与许可要点、署名要求写进 `README.md` / `README_cn.md` 的「License & Attribution」/「版权与署名」节，并明说「文件是纯文本、为什么」。
+- **没改什么**：徽章、两份 CONTRIBUTING、`.commit-cache.md` 均不动。
+- **代价（要记住）**：版权声明从此不在 `LICENSE.md` 里，而在两版 README 里——这是 CC BY 项目为了「GitHub 能认出许可证」必须交换的一步。团队规则中「CC BY 4.0 项目 LICENSE.md 顶部放版权声明行」那条因此改成「纯官方全文 + 版权行写 README」。
+
 ## [1.1.1] - 2026-11-11
 
 ### 变更（许可证类型修正：MIT → CC BY 4.0）
@@ -30,14 +40,6 @@
 - **为什么机器人不按「分支 + PR + 必过检查」的团队标准走**：用 `GITHUB_TOKEN` 建的 PR 不会触发其它 workflow（GitHub 防递归规则），`validate` 这个必过检查永远不会出现在机器人 PR 上，自动合并会一直等下去（2026-11-11 实测：PR 开出来、检查栏一直空着）。所以改成「推送前先跑 `validate`，通过再直推 `main`」——门禁放在提交前，不放在 PR 上。真要做到「每次同步都过一个 PR」，需要一个能触发 workflow 的 PAT，届时换回来即可。
 
 ## [Unreleased]
-
-### 修复（LICENSE.md 改为纯官方全文：GitHub 只认零追加的 CC BY 4.0）
-
-- **为什么改**：1.1.1 之后仓库侧边栏的许可证显示「Other」，`gh api repos/xhqing/blog/license` 返回 `{"key":"other","spdx_id":"NOASSERTION"}`——等于在 GitHub 眼里没有许可证，读者看不到 CC BY 4.0。
-- **怎么查出来的**：对照两个同样用 CC BY 4.0 的知名仓库——`microsoft/autogen` 与 `EbookFoundation/free-programming-books`，两者的 `LICENSE` 都是**纯 `legalcode.txt` 全文、零追加**（18650 / 18658 字节），GitHub 都识别为 `cc-by-4.0` / `CC-BY-4.0`。我们那两版都在官方文本前后加了自己的段落（先是版权行 + 中文说明在顶部，后来版权行改到末尾），两版都还是 `NOASSERTION`。结论：**GitHub 的 CC BY 识别要求 LICENSE 文件就是纯官方文本，加一个版权行都不算**——这和 MIT 不同（MIT 模板本身就把版权行和许可正文写在一个文件里）。
-- **改了什么**：`LICENSE.md` 换成官方 `legalcode.txt` 全文（原样下载、一字不改）；版权声明行与许可要点、署名要求写进 `README.md` / `README_cn.md` 的「License & Attribution」/「版权与署名」节，并明说「文件是纯文本、为什么」。
-- **没改什么**：徽章、两份 CONTRIBUTING、`.commit-cache.md` 均不动。
-- **代价（要记住）**：版权声明从此不在 `LICENSE.md` 里，而在两版 README 里——这是 CC BY 项目为了「GitHub 能认出许可证」必须交换的一步。团队规则中「CC BY 4.0 项目 LICENSE.md 顶部放版权声明行」那条因此改成「纯官方全文 + 版权行写 README」。
 
 ### 变更（commit skill 标配补全：双语 README + LOGO + 徽章 + LICENSE.md + 检测缓存）
 
