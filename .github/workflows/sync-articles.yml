@@ -1,9 +1,18 @@
 name: sync articles
 
 # 把 social-agent（Gatsby 的项目）里 docs/articles/ 的文章同步进本博客。
-# 为什么是定时而不是推事件：跨仓库触发需要额外 token，定时拉取零配置、也不会
-# 因为对方仓库的权限变动而失效；每 10 分钟一次，合并后最迟十分钟上线。
-# 为什么产物走 PR 而不是直推 main：main 上有必过的 validate 检查，直接推会绕过它。
+#
+# 两个设计取舍，都是被限制逼出来的：
+#
+# 1. **定时拉取，不用跨仓库推送**：跨仓库触发需要额外的 PAT / App，定时拉取零配置、
+#    不会因为对方仓库权限变动而失效。合并后最迟十分钟上线，要立刻发布就手动触发。
+# 2. **直接推 main，不走 PR**：main 上有 validate 检查，但这套检查没法用在机器人身上
+#    ——用 GITHUB_TOKEN 建的 PR 不会触发别的 workflow（GitHub 的防递归规则），
+#    required check 永远不会出现，自动合并会一直等下去。所以改成「跑完 validate 再推」，
+#    检查放在推送前，而不是 PR 上。
+#
+# 如果以后愿意配一个 PAT（repo 写权限 + 允许触发 workflow），可以换回「分支 + PR +
+# required check + 自动合并」的形态，那样每次同步都留一条可审查的记录。
 
 on:
   schedule:
@@ -12,7 +21,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: sync-articles
@@ -23,8 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -33,29 +39,18 @@ jobs:
       - name: 同步文章
         run: python3 scripts/sync_articles.py
 
-      - name: 提交到同步分支并开 PR
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 推送前自检
+        run: python3 scripts/validate.py
+
+      - name: 提交并推送
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           if git diff --quiet && git diff --cached --quiet; then
-            echo "没有变化，跳过"
+            echo "没有变化，跳过提交"
             exit 0
           fi
-
-          branch="sync/articles"
-          git checkout -B "$branch"
           git add -A
           git commit -m "sync: 同步 social-agent 的文章"
-          git push -f origin "$branch"
-
-          # 分支上已经有开着的 PR 就复用，没有就新建
-          if [ -z "$(gh pr list --head "$branch" --state open --json number -q '.[].number')" ]; then
-            gh pr create --base main --head "$branch" \
-              --title "sync: 同步 social-agent 的文章" \
-              --body "由 \`.github/workflows/sync-articles.yml\` 自动生成：把 social-agent 的 \`docs/articles/\` 同步进本博客。"
-          fi
-          gh pr merge "$branch" --squash --auto
+          git push origin HEAD:main
