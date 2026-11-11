@@ -43,4 +43,6 @@ Syncing runs on GitHub Actions, so no local setup is required. To rebuild the si
 
 Copyright (c) 2021-2026 xhqing and contributors. Released under [CC BY 4.0](LICENSE.md).
 
+`LICENSE.md` holds the official CC BY 4.0 legal code, verbatim and with nothing added — GitHub only recognises the licence when the file is the pure text, so the copyright line and the summary live here instead.
+
 Attribution: the licence requires credit. If you reuse or adapt this material, keep the copyright notice above, link back to [blog](https://github.com/xhqing/blog), and say whether you changed anything.

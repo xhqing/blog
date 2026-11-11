@@ -31,11 +31,13 @@
 
 ## [Unreleased]
 
-### 修复（LICENSE.md 结构调整：官方全文在前、版权与说明在后，让 GitHub 认得出 CC BY 4.0）
+### 修复（LICENSE.md 改为纯官方全文：GitHub 只认零追加的 CC BY 4.0）
 
-- **为什么改**：1.1.1 把版权行与中文说明放在了文件顶部、官方 legalcode 在后，结果 GitHub 的许可证识别算不出来——仓库右侧栏显示「Other」（`gh api repos/xhqing/blog/license` 的 `spdx_id` 为 null），`gh repo view --json licenseInfo` 也报 `key: other`。识别依赖标准法律文本占文件主体的比例，顶部的中文前言把它稀释了。用户要的是「点进仓库就能一眼看到 CC BY 4.0」，而不是一个「Other」。
-- **改了什么**：`LICENSE.md` 重排——第一行起就是官方 legalcode 全文（原样、零改动），版权行与许可要点说明放在全文之后，用分隔线隔开。内容一字未删，只是换了顺序。
-- **没改什么**：README 徽章、两份 CONTRIBUTING、`.commit-cache.md` 均不动。
+- **为什么改**：1.1.1 之后仓库侧边栏的许可证显示「Other」，`gh api repos/xhqing/blog/license` 返回 `{"key":"other","spdx_id":"NOASSERTION"}`——等于在 GitHub 眼里没有许可证，读者看不到 CC BY 4.0。
+- **怎么查出来的**：对照两个同样用 CC BY 4.0 的知名仓库——`microsoft/autogen` 与 `EbookFoundation/free-programming-books`，两者的 `LICENSE` 都是**纯 `legalcode.txt` 全文、零追加**（18650 / 18658 字节），GitHub 都识别为 `cc-by-4.0` / `CC-BY-4.0`。我们那两版都在官方文本前后加了自己的段落（先是版权行 + 中文说明在顶部，后来版权行改到末尾），两版都还是 `NOASSERTION`。结论：**GitHub 的 CC BY 识别要求 LICENSE 文件就是纯官方文本，加一个版权行都不算**——这和 MIT 不同（MIT 模板本身就把版权行和许可正文写在一个文件里）。
+- **改了什么**：`LICENSE.md` 换成官方 `legalcode.txt` 全文（原样下载、一字不改）；版权声明行与许可要点、署名要求写进 `README.md` / `README_cn.md` 的「License & Attribution」/「版权与署名」节，并明说「文件是纯文本、为什么」。
+- **没改什么**：徽章、两份 CONTRIBUTING、`.commit-cache.md` 均不动。
+- **代价（要记住）**：版权声明从此不在 `LICENSE.md` 里，而在两版 README 里——这是 CC BY 项目为了「GitHub 能认出许可证」必须交换的一步。团队规则中「CC BY 4.0 项目 LICENSE.md 顶部放版权声明行」那条因此改成「纯官方全文 + 版权行写 README」。
 
 ### 变更（commit skill 标配补全：双语 README + LOGO + 徽章 + LICENSE.md + 检测缓存）
 
