@@ -42,3 +42,5 @@
    - [Mac安装vscode最快的方法](post/高效率软件或方法/Mac安装vscode最快的方法.md)
    - [Scroll-Reverser-for-MacOS](post/高效率软件或方法/Scroll-Reverser-for-MacOS.md)
    - [删除Mac自带ABC输入法](post/高效率软件或方法/删除Mac自带ABC输入法.md)
+ - :scroll: **关于**
+   - [版权与许可](license.md)
