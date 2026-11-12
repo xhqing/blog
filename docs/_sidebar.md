@@ -22,6 +22,8 @@
    - [当复利的假设被打破](post/复利与交易/当复利的假设被打破.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
+ - :books: **方法与实战**
+   - [为什么 AI 一定能做到你满意为止？](post/方法与实战/为什么 AI 一定能做到你满意为止？.md)
  - :books: **模式识别与机器学习**
    - [A-Gentle-Introduction-to-Gradient-Boosting](post/模式识别与机器学习/A-Gentle-Introduction-to-Gradient-Boosting.md)
    - [Introduction-to-Boosted-Trees](post/模式识别与机器学习/Introduction-to-Boosted-Trees.md)
