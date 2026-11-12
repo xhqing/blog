@@ -46,10 +46,9 @@
 - 站名、站标与商标不在本许可范围内；
 - 某篇文章如果单独写了别的许可声明，以那篇文章的声明为准。
 
-## 关于代码
-
-仓库里的配套脚本（`deploy.py` 与 `scripts/` 下的工具）与文章同许可，也是 CC BY 4.0。
-
 ## 联系
 
-有问题在仓库开 Issue：<https://github.com/xhqing/blog/issues>。
+- GitHub：<https://github.com/xhqing>
+- 微信：xhqingxhqing
+- 邮箱：<huaqing.xu.hk@gmail.com>
+- 小红书：xhqing
