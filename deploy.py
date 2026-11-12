@@ -28,6 +28,12 @@ POSTS = DOCS / "post"
 DATE_RE = re.compile(r"^创建于 \d{4}-\d{2}-\d{2}(<br>)?$")
 ORDER_RE = re.compile(r"<!-- order: (\d+) -->")
 
+# 固定页面：不属于任何文章分类、但要出现在侧边栏与首页的页面。
+# 结构：分组名 → （链接文字, docs 下的相对路径）。加页面时在这里登记一行即可。
+FIXED_PAGES: tuple[tuple[str, tuple[tuple[str, str], ...]], ...] = (
+    ("关于", (("版权与许可", "license.md"),)),
+)
+
 
 def post_title(path: Path) -> str:
     """侧边栏显示的文章名：用文件名（不带 .md）。
@@ -54,7 +60,8 @@ def iter_posts() -> list[tuple[str, Path]]:
     return items
 
 
-def render_sidebar() -> str:
+def render_entries() -> list[str]:
+    """文章列表（分类 → 顺序标记 → 文件名），侧边栏与首页共用这一份。"""
     lines: list[str] = []
     current: str | None = None
     for category, post in iter_posts():
@@ -62,18 +69,26 @@ def render_sidebar() -> str:
             current = category
             lines.append(f" - :books: **{category}**")
         lines.append(f"   - [{post_title(post)}](post/{category}/{post.name})")
-    return "\n".join(lines) + "\n"
+    return lines
+
+
+def render_fixed_entries() -> list[str]:
+    """固定页面（如许可页），排在文章列表之后。"""
+    lines: list[str] = []
+    for group, pages in FIXED_PAGES:
+        lines.append(f" - :scroll: **{group}**")
+        for title, path in pages:
+            lines.append(f"   - [{title}]({path})")
+    return lines
+
+
+def render_sidebar() -> str:
+    return "\n".join(render_entries() + render_fixed_entries()) + "\n"
 
 
 def render_readme() -> str:
     lines = ["# 藏经阁", "", " - **Repo Address**: https://github.com/xhqing/blog/"]
-    current: str | None = None
-    for category, post in iter_posts():
-        if category != current:
-            current = category
-            lines.append(f" - :books: **{category}**")
-        lines.append(f"   - [{post_title(post)}](post/{category}/{post.name})")
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines + render_entries() + render_fixed_entries()) + "\n"
 
 
 def fix_first_line(text: str) -> str:
@@ -107,6 +122,10 @@ def collect_problems() -> list[str]:
     for link in re.findall(r"\]\((post/[^)]+)\)", sidebar):
         if not (DOCS / link).exists():
             problems.append(f"docs/_sidebar.md: 链接指向不存在的文件 {link}")
+    for _, pages in FIXED_PAGES:
+        for _, path in pages:
+            if not (DOCS / path).exists():
+                problems.append(f"docs/{path}: 固定页面缺失（deploy.py 的 FIXED_PAGES 登记了它，侧边栏里有链接）")
     return problems
 
 
