@@ -2,22 +2,21 @@ name: sync articles
 
 # 把 social-agent（Gatsby 的项目）里 docs/articles/ 的文章同步进本博客。
 #
-# 两个设计取舍，都是被限制逼出来的：
+# 2026-11-13 用户立规：没有用户当轮明确同意，不能往博客发布任何文章；未完成的文章不发。
+# 因此去掉定时触发，只保留 workflow_dispatch，并要求触发时显式确认用户已同意。
+# 同步脚本仍只碰带 <!-- source: … --> 标记的文件，不碰手写文章。
 #
-# 1. **定时拉取，不用跨仓库推送**：跨仓库触发需要额外的 PAT / App，定时拉取零配置、
-#    不会因为对方仓库权限变动而失效。合并后最迟十分钟上线，要立刻发布就手动触发。
-# 2. **直接推 main，不走 PR**：main 上有 validate 检查，但这套检查没法用在机器人身上
-#    ——用 GITHUB_TOKEN 建的 PR 不会触发别的 workflow（GitHub 的防递归规则），
-#    required check 永远不会出现，自动合并会一直等下去。所以改成「跑完 validate 再推」，
-#    检查放在推送前，而不是 PR 上。
-#
-# 如果以后愿意配一个 PAT（repo 写权限 + 允许触发 workflow），可以换回「分支 + PR +
-# required check + 自动合并」的形态，那样每次同步都留一条可审查的记录。
+# 直接推 main 不走 PR 的原因：用 GITHUB_TOKEN 建的 PR 不会触发别的 workflow
+# （GitHub 防递归），required check 永远不出现、自动合并会死等。所以把门禁放在
+# 「推送前跑 validate」。
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
+    inputs:
+      user_approved:
+        description: "用户已明确同意本次发布，输入 approved"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -28,6 +27,7 @@ concurrency:
 
 jobs:
   sync:
+    if: ${{ inputs.user_approved == 'approved' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

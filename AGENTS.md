@@ -13,9 +13,11 @@
 ## 内容怎么进来
 
 1. **手写**：直接改 `docs/post/`。首行 `创建于 YYYY-MM-DD<br>`，标题用二级 `##`。
-2. **自动同步**：`social-agent` 的 `docs/articles/` → 本仓库 `docs/post/`，由 `.github/workflows/sync-articles.yml` 每 10 分钟拉一次（也支持手动 `workflow_dispatch`）。同步脚本是 `scripts/sync_articles.py`，只碰带 `<!-- source: … -->` 标记的文件，不碰手写文章。
+2. **同步**：`social-agent` 的 `docs/articles/` → 本仓库 `docs/post/`，脚本 `scripts/sync_articles.py`，只碰带 `<!-- source: … -->` 标记的文件，不碰手写文章。
 
-**发布不区分「写完没写完」**：源仓库里是什么状态就发什么状态，这是用户 2026-11-11 明确要求的。
+**发布红线（2026-11-13 用户立）**：没有用户当轮明确同意，不能往博客发布任何文章；未完成的文章不发。`.github/workflows/sync-articles.yml` 已去掉定时触发，只保留需显式确认的 `workflow_dispatch`；触发前必须取得用户同意。源仓库 `docs/articles/` 里的文章只是稿件，落盘不等于发布。
+
+2026-11-11 的旧口径「发布不区分写完没写完」已作废，当日同步过来的 6 篇文章与配图已于 2026-11-13 全部撤下。
 
 ## Worker 边界
 
