@@ -17,6 +17,8 @@
    - [假设检验](post/Statistics/假设检验.md)
    - [参数估计](post/Statistics/参数估计.md)
    - [基础概念](post/Statistics/基础概念.md)
+ - :books: **复利与交易**
+   - [你很可能不知道的关于复利的三个关键点（一）](post/复利与交易/你很可能不知道的关于复利的三个关键点（一）.md)
  - :books: **数据仓库设计**
    - [Data-Warehose-Data-Hierarchy](post/数据仓库设计/Data-Warehose-Data-Hierarchy.md)
  - :books: **模式识别与机器学习**
