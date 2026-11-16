@@ -4,6 +4,12 @@
 
 ## [未发布]
 
+### 新增（发布《你很可能不知道的关于复利的三个关键点（一）》，2026-11-16）
+
+- **为什么改**：用户 2026-11-16 当轮要求「把这篇文章发布到我的个人博客」，这是 2026-11-13 发布红线要求的明确同意；此前 6 篇已在 2026-11-13 全部撤下，本次只发这一篇。
+- **改了什么**：新增 `docs/post/复利与交易/你很可能不知道的关于复利的三个关键点（一）.md`，按 `scripts/sync_articles.py` 的体例生成（首行 `创建于 2026-10-12`、关键词、`<!-- source: social-agent/docs/articles/compounding-three-switches.md -->`、`<!-- order: 1 -->`、标题降为二级）；`docs/_sidebar.md` 与 `docs/README.md` 由 `deploy.py` 重新生成，「复利与交易」分类重新出现在侧边栏与首页。
+- **边界**：源仓库 `docs/articles/` 里其余 5 篇（compounding-verify、compounding-size、three-switches-derivation、compounding-assumptions、why-ai-converges）未经同意，不发布；`sync-articles` workflow 未触发。
+
 ### 移除（撤下全部同步文章，2026-11-13）
 
 - **为什么改**：用户 2026-11-13 裁定「这些文章也从博客撤掉，以后不往博客发送未完成的文章，没有我的同意不能往博客发布任何文章」。2026-11-11 的旧口径「不论写完没写完都发布」作废。
