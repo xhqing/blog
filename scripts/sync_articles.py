@@ -3,7 +3,7 @@
 内容源头是 social-agent 仓库的 `docs/articles/*.md`——那份文章是公众号 / 口播稿的底稿，
 本脚本只做「搬家 + 适配 docsify 体例」，不改正文观点：
 
-- 一级标题 `# 标题` 改成二级 `## 标题`（docsify 侧边栏只认到二级）；
+- 一级标题 `# 标题` 只用来给文件命名与写进侧边栏，**不搬进正文**（博客页面与侧边栏已经显示标题，正文再写一遍是重复）；
 - 首行补 `创建于 YYYY-MM-DD<br>` 与 `关键词: …`（博客的既有体例，见 docs/post 下其它文章）；
 - 相对图片拷进 `docs/post/<分类>/img/<源文件名>/` 并改写链接（不同文章同名图不会互相覆盖）；
 - 每篇写一行 `<!-- source: … -->` 标记，用来认领「这篇是同步来的」——标题变了能删掉旧文件，
@@ -161,6 +161,39 @@ def copy_images(text: str, src_file: Path, src_root: Path, img_root: Path, link_
     return IMG_RE.sub(repl, text)
 
 
+def drop_title(text: str, title: str) -> str:
+    """去掉正文开头的一级标题行：标题由文件名与侧边栏承载，正文不再重复。
+
+    只删开头的第一行标题（跳过前置空行），正文里其它的标题原样保留。
+    """
+    lines = text.splitlines()
+    head = f"# {title}"
+    for i, line in enumerate(lines):
+        if not line.strip():
+            continue
+        if line.strip() == head:
+            return "\n".join(lines[i + 1:]).lstrip("\n")
+        break
+    return text
+
+
+BOLD_RE = re.compile(r"\*\*([^\n]+?)\*\*")
+
+
+def strong_for_math(text: str) -> str:
+    """把「加粗里嵌行内公式」的写法改成 HTML strong。
+
+    为什么：docsify-katex 的 inline tokenizer 会先吃掉 `$n$`，`**` 因而不闭合，
+    页面上会露出两个星号（实测 `（**$n$ 足够大时**才成立）` 渲染成 `（**n 足够大时**才成立）`）。
+    `<strong>` 里的公式照样由 KaTeX 渲染。
+    """
+    def repl(m: re.Match[str]) -> str:
+        inner = m.group(1)
+        return f"<strong>{inner}</strong>" if "$" in inner else m.group(0)
+
+    return BOLD_RE.sub(repl, text)
+
+
 def render(src_file: Path, src_root: Path, category: str, date: str, existing: Path | None,
            dry: bool) -> tuple[str, Path]:
     text = src_file.read_text(encoding="utf-8")
@@ -169,7 +202,7 @@ def render(src_file: Path, src_root: Path, category: str, date: str, existing: P
         raise SystemExit(f"{src_file.name} 没有一级标题（`# …`），无法命名博客文章")
     slug = src_file.stem
     img_root = POSTS / category / "img" / slug
-    body = text.replace(f"# {title}", f"## {title}", 1)
+    body = strong_for_math(drop_title(text, title))
     body = copy_images(body, src_file, src_root, img_root, POSTS / category, dry).strip() + "\n"
 
     keywords = KEYWORDS.get(src_file.name)
