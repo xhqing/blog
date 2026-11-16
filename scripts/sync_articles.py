@@ -15,6 +15,7 @@
     python3 scripts/sync_articles.py                    # 从 GitHub 拉 social-agent 最新提交
     python3 scripts/sync_articles.py --source ~/Developer/social-agent   # 用本地副本（调试）
     python3 scripts/sync_articles.py --dry-run          # 只打印计划，不落盘
+    python3 scripts/sync_articles.py --only compounding-verify.md         # 只同步这一篇（可重复）
 """
 
 from __future__ import annotations
@@ -98,6 +99,21 @@ def articles(src: Path) -> list[Path]:
             continue
         out.append(p)
     return out
+
+
+def resolve_only(src: Path, items: list[str]) -> set[str]:
+    """把 --only 传的文件名（或路径）解析成源相对路径，如 docs/articles/compounding-verify.md。"""
+    rels: set[str] = set()
+    missing: list[str] = []
+    for item in items:
+        candidate = src / SOURCE_PATH / Path(item).name
+        if not candidate.is_file():
+            missing.append(item)
+            continue
+        rels.add(candidate.relative_to(src).as_posix())
+    if missing:
+        sys.exit(f"--only 指定的文件在 {SOURCE_PATH} 下找不到：{', '.join(missing)}")
+    return rels
 
 
 def category_of(name: str) -> str:
@@ -231,6 +247,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="把 social-agent 的文章同步到藏经阁")
     parser.add_argument("--source", help="social-agent 仓库本地路径（调试用，不走网络）")
     parser.add_argument("--dry-run", action="store_true", help="只打印计划，不写文件")
+    parser.add_argument("--only", action="append", metavar="FILE",
+                        help="只同步指定文章（可重复；写文件名即可）。"
+                             "范围之外的已发布文章与配图目录都不会被动。")
     args = parser.parse_args()
 
     if not POSTS.is_dir():
@@ -238,6 +257,7 @@ def main() -> int:
 
     with tempfile.TemporaryDirectory() as tmp:
         src = fetch_source(args.source, Path(tmp))
+        scope = resolve_only(src, args.only) if args.only else None
         current = existing_posts()
         planned: dict[str, Path] = {}
         written: list[str] = []
@@ -247,6 +267,8 @@ def main() -> int:
         try:
             for src_file in articles(src):
                 rel = src_file.relative_to(src).as_posix()
+                if scope is not None and rel not in scope:
+                    continue
                 category = category_of(src_file.name)
                 active.add((category, src_file.stem))
                 prev = current.get(rel)
@@ -268,10 +290,13 @@ def main() -> int:
             print(f"同步失败：{exc}")
             return 1
 
-        # 源文章已删除同步来的文件
+        # 源文章已删除同步来的文件（--only 时只处理范围内的，范围外的保持原样）
         for rel, path in current.items():
-            if rel not in planned:
-                removed.append(path.relative_to(DOCS).as_posix())
+            if rel in planned:
+                continue
+            if scope is not None and rel not in scope:
+                continue
+            removed.append(path.relative_to(DOCS).as_posix())
 
         if args.dry_run:
             for path in dict.fromkeys(removed):
@@ -283,8 +308,8 @@ def main() -> int:
             if target.exists():
                 target.unlink()
 
-        # 清掉不再有人用的配图目录（文章改名后旧图会留在盘上）
-        for category_dir in POSTS.iterdir():
+        # 清掉不再有人用的配图目录（文章改名后旧图会留在盘上）；--only 时不动
+        for category_dir in (POSTS.iterdir() if scope is None else []):
             img_root = category_dir / "img"
             if not img_root.is_dir():
                 continue
