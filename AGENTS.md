@@ -19,11 +19,12 @@
 
 2026-11-11 的旧口径「发布不区分写完没写完」已作废，当日同步过来的 6 篇文章与配图已于 2026-11-13 全部撤下。
 
-## Worker 边界
+## 会话角色边界
 
-- 以本仓库或其 worktree 为工作目录的会话是 **Worker**：只干本仓库的具体活（改脚本、修文章、跑校验、提交），干完向 social-agent 的 Leader 汇报。
-- 不碰 local `main`、不建 / 不删 worktree。
+- **本项目主工作区停在 `main` 分支的会话是 subLeader**：管本仓库自身——local `main` 只 `fetch` + `merge --ff-only`；从本仓库 main 建删任务 worktree；把活派给 Worker；按全局工作流（分支 → push → PR → CI 合并）合并本仓库的 PR；发本仓库的版；Worker 用完即清。对上级 Agent 项目（social-agent）与其它子项目**只读**——要它们变就走 `agent_call` 找其 Leader，或给对方仓库建 Issue。
+- **停在非 `main` 分支 worktree 的会话是 Worker**：只干当前 worktree 的具体活（改脚本、修文章、跑校验、提交 + push 自己的分支 + PR），干完向派它的 Leader 汇报；不碰 local `main`、不建 / 不删 worktree、不合并 PR、不发版。
 - **不手改带同步标记的文章**——那些是同步脚本的产出，改了下次同步会被覆盖。要改就改 `social-agent` 里的源文章。
+- 角色判据与四类 `dir` 目录见全局 `~/.pi/agent/AGENTS.md`「会话间协作」节与 `~/.pi/agent/docs/agents-registry.md` 第 5 条。
 
 ## 规则索引
 

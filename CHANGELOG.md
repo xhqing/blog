@@ -4,6 +4,12 @@
 
 ## [未发布]
 
+### 变更（AGENTS.md 的会话角色改成 subLeader / Worker 两级，2026-11-25）
+
+- **为什么改**：用户 2026-11-25 把全团队会话角色重新定义成三级（agentLeader / subLeader / Worker），判据是「项目类型 + 当前分支」；本仓库 AGENTS.md 的「## Worker 边界」还写着「以本仓库或其 worktree 为工作目录的会话都是 Worker」，把 blog 主工作区 main 的会话也当成了 Worker，而它实际要能建 worktree、派单、合并自身 PR、发版。
+- **改了什么**：节标题「## Worker 边界」→「## 会话角色边界」，内容改成两级——本仓库主工作区停在 `main` 的会话是 **subLeader**（local `main` 只 `fetch` + `merge --ff-only`、从自身 main 建删任务 worktree、派 Worker、合并本仓库 PR、发本仓库版本、回收 Worker，对上级与其他子项目只读）；停在非 `main` 分支 worktree 的会话是 **Worker**（只干当前 worktree、不碰 local main、不建删 worktree、不合并 PR、不发版）。末尾补一条指向全局注册表第 5 条的权威口径。
+- **边界**：「不手改带同步标记的文章」这条原样保留（它属内容规则、不属角色）；发布红线、同步脚本、`docs/` 下文章与 workflow 都没动；本仓库没有 `.pi/APPEND_SYSTEM.md`，无需同步。
+
 ### 变更（同步源稿对 R 的定义修正，2026-11-16）
 
 - **为什么改**：源稿把 R 说成“1000 块变成的倍数”，实际 R 是**盈亏几个风险单位**（R=1 赢满一个、R=-1 输满一个、R=0 不赚不亏），1000 块只是“一个风险单位”对应的金额。
